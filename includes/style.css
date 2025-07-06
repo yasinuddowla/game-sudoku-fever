@@ -1,0 +1,211 @@
+/**
+ * Sudoku Game - Modern Tailwind CSS Styles
+ * Custom CSS for enhanced animations and effects
+ * Main styling is handled by Tailwind CSS in HTML
+ */
+
+/* Custom animations and transitions */
+.animated-bg {
+    background: linear-gradient(-45deg, #0f0f23, #1a1a2e, #16213e, #0f3460, #533a7d, #4a0e4e);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    position: relative;
+}
+
+.animated-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(255, 0, 150, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(0, 255, 255, 0.2) 0%, transparent 50%);
+    animation: glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
+.glass-effect {
+    background: rgba(15, 15, 35, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(120, 119, 198, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-effect:hover {
+    border-color: rgba(255, 119, 198, 0.5);
+    box-shadow: 0 8px 32px rgba(255, 119, 198, 0.2);
+    transition: all 0.3s ease;
+}
+
+.sudoku-cell {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sudoku-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.sudoku-cell.selected {
+    background: linear-gradient(135deg, #ff0080, #ff0040);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.8), 0 0 60px rgba(255, 0, 128, 0.4);
+}
+
+.sudoku-cell.given {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+.sudoku-cell.user-filled {
+    background: linear-gradient(135deg, #00d9ff, #0099cc);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+}
+
+.sudoku-cell.error {
+    background: linear-gradient(135deg, #ff1744, #ff5722);
+    color: white;
+    animation: shake 0.5s ease-in-out, errorGlow 2s ease-in-out;
+    box-shadow: 0 0 20px rgba(255, 23, 68, 0.8);
+}
+
+@keyframes errorGlow {
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 23, 68, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 23, 68, 1);
+    }
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.number-pad-btn {
+    transition: all 0.2s ease;
+}
+
+.number-pad-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.number-pad-btn:active {
+    transform: translateY(0);
+}
+
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(255, 0, 150, 0.6), rgba(0, 255, 255, 0.6));
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+    box-shadow: 0 0 10px rgba(255, 0, 150, 0.8);
+}
+
+.particle:nth-child(2n) {
+    background: linear-gradient(45deg, rgba(120, 119, 198, 0.6), rgba(255, 119, 198, 0.6));
+    box-shadow: 0 0 10px rgba(120, 119, 198, 0.8);
+}
+
+.particle:nth-child(3n) {
+    background: linear-gradient(45deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 150, 0.6));
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Tooltip styles */
+[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+[title] {
+    position: relative;
+}
+/* Responsive design */
+@media (max-width: 768px) {
+    .sudoku-cell {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        font-size: 1rem !important;
+    }
+
+    .number-pad-btn {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom focus styles for accessibility */
+*:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
